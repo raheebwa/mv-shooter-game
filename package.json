@@ -5,5 +5,8 @@
   "main": "src/index.js",
   "repository": "git@github.com:raheebwa/mv-shooter-game.git",
   "author": "Ramadhan Aheebwa <raaheebwa@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.0.0"
+  }
 }
