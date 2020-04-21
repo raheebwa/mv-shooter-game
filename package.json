@@ -1,0 +1,9 @@
+{
+  "name": "shooter-game",
+  "version": "1.0.0",
+  "description": "A shooter game based on webpack, es6+ and phaser3",
+  "main": "src/index.js",
+  "repository": "git@github.com:raheebwa/mv-shooter-game.git",
+  "author": "Ramadhan Aheebwa <raaheebwa@gmail.com>",
+  "license": "MIT"
+}
