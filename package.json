@@ -6,14 +6,26 @@
   "repository": "git@github.com:raheebwa/mv-shooter-game.git",
   "author": "Ramadhan Aheebwa <raaheebwa@gmail.com>",
   "license": "MIT",
-  "scripts":{
-    "server" : "webpack-dev-server"
+  "scripts": {
+    "server": "webpack-dev-server",
+    "lint": "eslint src/*",
+    "lint:fix": "eslint src/* --fix"
   },
   "devDependencies": {
     "babel-core": "6",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^4.1.1",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "2.5.0",
+    "install-peerdeps": "^2.0.2",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.0.0"
   },
