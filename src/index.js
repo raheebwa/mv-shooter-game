@@ -1,11 +1,14 @@
+/* eslint-disable no-undef */
 import 'phaser';
 
-import { SimpleScene } from './scenes/simple-scene';
+import SimpleScene from './scenes/simple-scene';
 
 const gameConfig = {
-    width: 680,
-    height: 400,
-    scene: SimpleScene
+  width: 680,
+  height: 400,
+  scene: SimpleScene,
 };
 
-new Phaser.Game(gameConfig);
+const newGame = new Phaser.Game(gameConfig);
+
+newGame();
