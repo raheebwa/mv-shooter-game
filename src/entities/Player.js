@@ -1,4 +1,5 @@
 import Entity from './Entity';
+import PlayerLaser from './PlayerLaser';
 
 export default class Player extends Entity {
     constructor(scene, x, y, key) {
