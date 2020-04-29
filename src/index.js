@@ -1,14 +1,11 @@
 /* eslint-disable no-undef */
 import 'phaser';
 
-import SimpleScene from './scenes/simple-scene';
+import gameConfig from "./config";
+import SceneGameOver from "./scenes/SceneGameOver";
+import SceneMain from "./scenes/SceneMain";
+import SceneMainMenu from "./scenes/SceneMainMenu";
 
-const gameConfig = {
-  width: 680,
-  height: 400,
-  scene: SimpleScene,
-};
+const config = gameConfig([SceneMainMenu, SceneMain, SceneGameOver]);
 
-const newGame = new Phaser.Game(gameConfig);
-
-newGame();
+const newGame = new Phaser.Game(config);
