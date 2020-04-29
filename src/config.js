@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const gameConfig = (scenes) => {
+const GameConfig = (scenes) => {
   const config = {
     type: Phaser.AUTO,
     width: 480,
@@ -20,4 +20,4 @@ const gameConfig = (scenes) => {
 };
 
 
-export default gameConfig;
+export default GameConfig;
