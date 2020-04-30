@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import 'phaser';
 
 export default class Entity extends Phaser.GameObjects.Sprite {
@@ -11,34 +12,41 @@ export default class Entity extends Phaser.GameObjects.Sprite {
     this.setData('isDead', false);
   }
 
-  explode() {
+  explode(canDestroy) {
     if (!this.getData('isDead')) {
       // Set the texture to the explosion image, then play the animation
       this.setTexture('sprExplosion'); // this refers to the same animation key we used when we added this.anims.create previously
       this.play('sprExplosion'); // play the animation
-
       // pick a random explosion sound within the array we defined in this.sfx in SceneMain
-      this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
-
+      this.scene.sfx.explosions[
+        Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)
+      ].play();
       if (this.shootTimer !== undefined) {
         if (this.shootTimer) {
           this.shootTimer.remove(false);
         }
       }
-
       this.setAngle(0);
       this.body.setVelocity(0, 0);
-
-      this.on('animationcomplete', function () {
-        const canDestroy = true;
+      this.on('animationcomplete', () => {
         if (canDestroy) {
           this.destroy();
         } else {
           this.setVisible(false);
         }
       }, this);
-
       this.setData('isDead', true);
     }
+  }
+
+  onDestroy() {
+    this.scene.time.addEvent({ // go to game over scene
+      delay: 1000,
+      callback() {
+        this.scene.scene.start('SceneGameOver');
+      },
+      callbackScope: this,
+      loop: false,
+    });
   }
 }
