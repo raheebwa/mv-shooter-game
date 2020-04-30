@@ -1,11 +1,12 @@
+/* eslint-disable no-undef */
 import Entity from './Entity';
 import PlayerLaser from './PlayerLaser';
 
 export default class Player extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key, 'Player');
+
     this.setData('speed', 200);
-    this.play('sprPlayer');
 
     this.setData('isShooting', false);
     this.setData('timerShootDelay', 10);
@@ -26,6 +27,17 @@ export default class Player extends Entity {
 
   moveRight() {
     this.body.velocity.x = this.getData('speed');
+  }
+
+  onDestroy() {
+    this.scene.time.addEvent({ // go to game over scene
+      delay: 1000,
+      callback() {
+        this.scene.scene.start('SceneGameOver');
+      },
+      callbackScope: this,
+      loop: false,
+    });
   }
 
   update() {

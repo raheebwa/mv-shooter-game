@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Entity from './Entity';
 
 export default class ChaserShip extends Entity {
@@ -23,7 +24,7 @@ export default class ChaserShip extends Entity {
         this.state = this.states.CHASE;
       }
 
-      if (this.state == this.states.CHASE) {
+      if (this.state === this.states.CHASE) {
         const dx = this.scene.player.x - this.x;
         const dy = this.scene.player.y - this.y;
 
@@ -34,13 +35,13 @@ export default class ChaserShip extends Entity {
           Math.cos(angle) * speed,
           Math.sin(angle) * speed,
         );
-      }
-    }
 
-    if (this.x < this.scene.player.x) {
-      this.angle -= 5;
-    } else {
-      this.angle += 5;
+        if (this.x < this.scene.player.x) {
+          this.angle -= 5;
+        } else {
+          this.angle += 5;
+        }
+      }
     }
   }
 }

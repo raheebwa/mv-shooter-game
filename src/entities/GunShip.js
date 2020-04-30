@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Entity from './Entity';
 import EnemyLaser from './EnemyLaser';
 

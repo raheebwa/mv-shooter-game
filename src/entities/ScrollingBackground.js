@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export default class ScrollingBackground {
   constructor(scene, key, velocityY) {
     this.scene = scene;
@@ -8,7 +9,7 @@ export default class ScrollingBackground {
   }
 
   createLayers() {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i += 1) {
       // creating two backgrounds will allow a continuous scroll
       const layer = this.scene.add.sprite(0, 0, this.key);
       layer.y = (layer.displayHeight * i);

@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import Entity from './Entity';
 
 export default class CarrierShip extends Entity {
