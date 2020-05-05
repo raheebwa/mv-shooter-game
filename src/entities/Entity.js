@@ -28,25 +28,18 @@ export default class Entity extends Phaser.GameObjects.Sprite {
       }
       this.setAngle(0);
       this.body.setVelocity(0, 0);
-      this.on('animationcomplete', () => {
-        if (canDestroy) {
-          this.destroy();
-        } else {
-          this.setVisible(false);
-        }
-      }, this);
+      this.on(
+        'animationcomplete',
+        () => {
+          if (canDestroy) {
+            this.destroy();
+          } else {
+            this.setVisible(false);
+          }
+        },
+        this,
+      );
       this.setData('isDead', true);
     }
-  }
-
-  onDestroy() {
-    this.scene.time.addEvent({ // go to game over scene
-      delay: 1000,
-      callback() {
-        this.scene.scene.start('SceneGameOver');
-      },
-      callbackScope: this,
-      loop: false,
-    });
   }
 }
