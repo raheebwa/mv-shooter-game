@@ -22,7 +22,19 @@ export default class SceneGameOver extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
-    console.log(this.score);
+    this.subTitle = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.8,
+      `Final Score: ${this.score}`, {
+        fontFamily: 'monospace',
+        fontSize: 28,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center',
+      },
+    );
+    this.subTitle.setOrigin(0.5);
+
     this.sfx = {
       btnOver: this.sound.add('sndBtnOver'),
       btnDown: this.sound.add('sndBtnDown'),
