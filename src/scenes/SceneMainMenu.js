@@ -36,40 +36,58 @@ export default class SceneMainMenu extends Phaser.Scene {
 
     this.btnPlay.setInteractive();
 
-    this.btnPlay.on('pointerover', () => {
-      this.btnPlay.setTexture('sprBtnPlayHover'); // set the button texture to sprBtnPlayHover
-      this.sfx.btnOver.play(); // play the button over sound
-    }, this);
+    this.btnPlay.on(
+      'pointerover',
+      () => {
+        this.btnPlay.setTexture('sprBtnPlayHover'); // set the button texture to sprBtnPlayHover
+        this.sfx.btnOver.play(); // play the button over sound
+      },
+      this,
+    );
 
     this.btnPlay.on('pointerout', () => {
       this.setTexture('sprBtnPlay');
     });
 
-    this.btnPlay.on('pointerdown', () => {
-      this.btnPlay.setTexture('sprBtnPlayDown');
-      this.sfx.btnDown.play();
-    }, this);
+    this.btnPlay.on(
+      'pointerdown',
+      () => {
+        this.btnPlay.setTexture('sprBtnPlayDown');
+        this.sfx.btnDown.play();
+      },
+      this,
+    );
 
-    this.btnPlay.on('pointerup', () => {
-      this.btnPlay.setTexture('sprBtnPlay');
-    }, this);
+    this.btnPlay.on(
+      'pointerup',
+      () => {
+        this.btnPlay.setTexture('sprBtnPlay');
+      },
+      this,
+    );
 
-    this.title = this.add.text(this.game.config.width * 0.5, 128, "RAMAR'S SHOOTER GAME", {
-      fontFamily: 'monospace',
-      fontSize: 35,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center',
-    });
+    this.title = this.add.text(
+      this.game.config.width * 0.5,
+      128,
+      "RAMAR'S SHOOTER GAME", {
+        fontFamily: 'monospace',
+        fontSize: 35,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center',
+      },
+    );
 
     this.title.setOrigin(0.5);
 
-
-    this.btnPlay.on('pointerup', () => {
-      this.btnPlay.setTexture('sprBtnPlay');
-      this.scene.start('SceneMain');
-    }, this);
-
+    this.btnPlay.on(
+      'pointerup',
+      () => {
+        this.btnPlay.setTexture('sprBtnPlay');
+        this.scene.start('SceneMain');
+      },
+      this,
+    );
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
@@ -79,7 +97,6 @@ export default class SceneMainMenu extends Phaser.Scene {
       this.backgrounds.push(bg);
     }
   }
-
 
   update() {
     for (let i = 0; i < this.backgrounds.length; i += 1) {
