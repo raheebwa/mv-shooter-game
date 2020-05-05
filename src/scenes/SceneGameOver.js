@@ -2,8 +2,14 @@
 import ScrollingBackground from '../entities/ScrollingBackground';
 
 export default class SceneGameOver extends Phaser.Scene {
-  constructor() {
+  constructor(score = 0) {
     super({ key: 'SceneGameOver' });
+    this.score = score;
+  }
+
+  init(data) {
+    // !!! print {}
+    this.score = data.score;
   }
 
   create() {
@@ -16,6 +22,7 @@ export default class SceneGameOver extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
+    console.log(this.score);
     this.sfx = {
       btnOver: this.sound.add('sndBtnOver'),
       btnDown: this.sound.add('sndBtnDown'),

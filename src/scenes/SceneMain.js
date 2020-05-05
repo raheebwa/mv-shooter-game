@@ -6,10 +6,11 @@ import ChaserShip from '../entities/ChaserShip';
 import ScrollingBackground from '../entities/ScrollingBackground';
 
 export default class SceneMain extends Phaser.Scene {
-  constructor(score = 0, scoreText) {
+  constructor(score = 0, scoreText, finalScore) {
     super({ key: 'SceneMain' });
     this.score = score;
     this.scoreText = scoreText;
+    this.finalScore = finalScore;
   }
 
   preload() {
@@ -171,8 +172,7 @@ export default class SceneMain extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
       if (!player.getData('isDead') && !enemy.getData('isDead')) {
         player.explode(false);
-        player.onDestroy();
-        console.log(this.score);
+        player.onDestroy(this.score);
         enemy.explode(true);
       }
     });
