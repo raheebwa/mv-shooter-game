@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import ScrollingBackground from '../entities/ScrollingBackground';
+import MenuButton from '../game_objects/menu-button';
 
 export default class SceneMainMenu extends Phaser.Scene {
   constructor() {
@@ -23,52 +24,9 @@ export default class SceneMainMenu extends Phaser.Scene {
   }
 
   create() {
-    this.sfx = {
-      btnOver: this.sound.add('sndBtnOver'),
-      btnDown: this.sound.add('sndBtnDown'),
-    };
-
-    this.btnPlay = this.add.sprite(
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      'sprBtnPlay',
-    );
-
-    this.btnPlay.setInteractive();
-
-    this.btnPlay.on(
-      'pointerover',
-      () => {
-        this.btnPlay.setTexture('sprBtnPlayHover'); // set the button texture to sprBtnPlayHover
-        this.sfx.btnOver.play(); // play the button over sound
-      },
-      this,
-    );
-
-    this.btnPlay.on('pointerout', () => {
-      this.setTexture('sprBtnPlay');
-    });
-
-    this.btnPlay.on(
-      'pointerdown',
-      () => {
-        this.btnPlay.setTexture('sprBtnPlayDown');
-        this.sfx.btnDown.play();
-      },
-      this,
-    );
-
-    this.btnPlay.on(
-      'pointerup',
-      () => {
-        this.btnPlay.setTexture('sprBtnPlay');
-      },
-      this,
-    );
-
     this.title = this.add.text(
       this.game.config.width * 0.5,
-      128,
+      this.game.config.height * 0.2,
       "RAMAR'S SHOOTER GAME", {
         fontFamily: 'monospace',
         fontSize: 35,
@@ -78,16 +36,24 @@ export default class SceneMainMenu extends Phaser.Scene {
       },
     );
 
-    this.title.setOrigin(0.5);
-
-    this.btnPlay.on(
-      'pointerup',
+    this.playButton = new MenuButton(
+      this,
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.5,
+      'PLAY', {
+        fontFamily: 'monospace',
+        fontSize: 45,
+        fontStyle: 'bold',
+        color: 'red',
+        align: 'center',
+      },
       () => {
-        this.btnPlay.setTexture('sprBtnPlay');
         this.scene.start('SceneMain');
       },
-      this,
     );
+    this.add.existing(this.playButton);
+    this.playButton.setOrigin(0.5);
+    this.title.setOrigin(0.5);
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {

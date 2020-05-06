@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import ScrollingBackground from '../entities/ScrollingBackground';
+import MenuButton from '../game_objects/menu-button';
 
 export default class SceneGameOver extends Phaser.Scene {
   constructor(score = 0) {
@@ -13,71 +14,67 @@ export default class SceneGameOver extends Phaser.Scene {
   }
 
   create() {
-    this.title = this.add.text(this.game.config.width * 0.5, 128, 'GAME OVER', {
-      fontFamily: 'monospace',
-      fontSize: 48,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center',
-    });
-    this.title.setOrigin(0.5);
-
-    this.subTitle = this.add.text(
+    this.title = this.add.text(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.8,
-      `Final Score: ${this.score}`, {
+      this.game.config.height * 0.1,
+      'GAME OVER', {
         fontFamily: 'monospace',
-        fontSize: 28,
+        fontSize: 48,
         fontStyle: 'bold',
         color: '#ffffff',
         align: 'center',
       },
     );
+    this.title.setOrigin(0.5);
+
+    this.subTitle = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.2,
+      `Final Score: ${this.score}`, {
+        fontFamily: 'monospace',
+        fontSize: 28,
+        fontStyle: 'bold',
+        color: 'purple',
+        align: 'center',
+      },
+    );
     this.subTitle.setOrigin(0.5);
 
-    this.sfx = {
-      btnOver: this.sound.add('sndBtnOver'),
-      btnDown: this.sound.add('sndBtnDown'),
-    };
+    this.lBButton = new MenuButton(
+      this,
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.7,
+      'LEADERBOARD', {
+        fontFamily: 'monospace',
+        fontSize: 35,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center',
+      },
+      () => {
+        this.scene.start('SceneLeaderBoard');
+      },
+    );
 
-    this.btnRestart = this.add.sprite(
+    this.playButton = new MenuButton(
+      this,
       this.game.config.width * 0.5,
       this.game.config.height * 0.5,
-      'sprBtnRestart',
-    );
-
-    this.btnRestart.setInteractive();
-
-    this.btnRestart.on(
-      'pointerover',
-      () => {
-        this.btnRestart.setTexture('sprBtnRestartHover'); // set the button texture to sprBtnPlayHover
-        this.sfx.btnOver.play(); // play the button over sound
+      'RESTART', {
+        fontFamily: 'monospace',
+        fontSize: 45,
+        fontStyle: 'bold',
+        color: 'red',
+        align: 'center',
       },
-      this,
-    );
-
-    this.btnRestart.on('pointerout', () => {
-      this.setTexture('sprBtnRestart');
-    });
-
-    this.btnRestart.on(
-      'pointerdown',
       () => {
-        this.btnRestart.setTexture('sprBtnRestartDown');
-        this.sfx.btnDown.play();
-      },
-      this,
-    );
-
-    this.btnRestart.on(
-      'pointerup',
-      () => {
-        this.btnRestart.setTexture('sprBtnRestart');
         this.scene.start('SceneMain');
       },
-      this,
     );
+    this.add.existing(this.lBButton);
+    this.add.existing(this.playButton);
+    this.playButton.setOrigin(0.5);
+    this.lBButton.setOrigin(0.5);
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
