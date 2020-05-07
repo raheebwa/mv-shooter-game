@@ -3,9 +3,9 @@ import "babel-polyfill";
 const baseUrl =
     "https://us-central1-js-capstone-backend.cloudfunctions.net/api/";
 
-const postData = async(url = "", data = {}) => {
+const postData = async(url = "", data = {}, method = "POST") => {
     const response = await fetch(url, {
-        method: "POST",
+        method: method,
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
@@ -14,6 +14,20 @@ const postData = async(url = "", data = {}) => {
         },
         referrerPolicy: "no-referrer",
         body: JSON.stringify(data),
+    });
+    return JSON.stringify(await response.json());
+};
+
+const getData = async(url = "") => {
+    const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        referrerPolicy: "no-referrer",
     });
     return JSON.stringify(await response.json());
 };
@@ -47,32 +61,18 @@ const ApiConsumer = {
 
         return response;
     },
-    // async getScores() {
-    //     //   const response = await fetch(`${baseUrl}/games/${this.getGameID}/scores/`, {
-    //     //   mode: 'cors',
-    //     // });
-    //     // const allScores = await response.json();
-    //     const allScores = {
-    //         result: [{
-    //                 user: "John Doe",
-    //                 score: 42,
-    //             },
-    //             {
-    //                 user: "Peter Parker",
-    //                 score: 35,
-    //             },
-    //             {
-    //                 user: "Wonder Woman",
-    //                 score: 50,
-    //             },
-    //         ],
-    //     };
-    //     return JSON.stringify(allScores);
-    // },
+    async getScores() {
+        const response = await getData(
+            `${baseUrl}games/${await this.getGameID()}/scores/`
+        );
+        const allScores = await response;
+
+        return JSON.parse(allScores).result;
+    },
 };
 
 (async() => {
-    console.log(await ApiConsumer.postGameScore());
+    console.log(await ApiConsumer.getScores());
 })();
 
 export default ApiConsumer;
