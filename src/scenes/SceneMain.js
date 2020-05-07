@@ -6,11 +6,17 @@ import ChaserShip from '../entities/ChaserShip';
 import ScrollingBackground from '../entities/ScrollingBackground';
 
 export default class SceneMain extends Phaser.Scene {
-  constructor(score = 0, scoreText, finalScore) {
+  constructor(score, scoreText, user) {
     super({ key: 'SceneMain' });
     this.score = score;
     this.scoreText = scoreText;
-    this.finalScore = finalScore;
+    this.user = user;
+  }
+
+  init(data) {
+    // !!! print {}
+    this.user = data.user;
+    this.score = 0;
   }
 
   preload() {
@@ -90,10 +96,14 @@ export default class SceneMain extends Phaser.Scene {
       'sprPlayer',
     );
 
-    this.scoreText = this.add.text(16, 16, 'score: 0', {
-      fontSize: '32px',
-      fill: '#fff',
-    });
+    this.scoreText = this.add.text(
+      16,
+      16,
+      `User: ${this.user} Score: ${this.score}`, {
+        fontSize: '22px',
+        fill: '#fff',
+      },
+    );
 
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
@@ -163,7 +173,7 @@ export default class SceneMain extends Phaser.Scene {
           }
           enemy.explode(true);
           this.score += 10;
-          this.scoreText.setText(`Score: ${this.score}`);
+          this.scoreText.setText(`User: ${this.user} Score: ${this.score}`);
           playerLaser.destroy();
         }
       },
@@ -172,7 +182,7 @@ export default class SceneMain extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
       if (!player.getData('isDead') && !enemy.getData('isDead')) {
         player.explode(false);
-        player.onDestroy(this.score);
+        player.onDestroy(this.score, this.user);
         enemy.explode(true);
       }
     });
@@ -180,7 +190,7 @@ export default class SceneMain extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.enemyLasers, (player, laser) => {
       if (!player.getData('isDead') && !laser.getData('isDead')) {
         player.explode(false);
-        player.onDestroy(this.score);
+        player.onDestroy(this.score, this.user);
         laser.destroy();
       }
     });

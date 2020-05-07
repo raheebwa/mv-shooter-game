@@ -21,6 +21,8 @@ export default class SceneMainMenu extends Phaser.Scene {
     // audio
     this.load.audio('sndBtnOver', 'assets/sndBtnOver.wav');
     this.load.audio('sndBtnDown', 'assets/sndBtnDown.wav');
+    // html
+    this.load.html('nameform', 'assets/nameform.html');
   }
 
   create() {
@@ -36,21 +38,100 @@ export default class SceneMainMenu extends Phaser.Scene {
       },
     );
 
+    this.helpText = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.3,
+      'Choose your Alter Ego to Play:', {
+        color: 'yellow',
+        fontSize: '20px ',
+      },
+    );
+
+    this.helpText.setOrigin('0.5');
+
+    const egos = [
+      `Superman-${this.randomNumber()}`,
+      `Batgirl-${this.randomNumber()}`,
+      `Supergirl-${this.randomNumber()}`,
+      `Batman-${this.randomNumber()}`,
+    ];
+    const playBtnSize = 25;
+
     this.playButton = new MenuButton(
       this,
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      'PLAY', {
+      this.game.config.width * 0.25,
+      this.game.config.height * 0.4,
+      `${egos[0].toUpperCase()}`, {
         fontFamily: 'monospace',
-        fontSize: 45,
+        fontSize: playBtnSize,
         fontStyle: 'bold',
-        color: 'red',
+        color: 'white',
         align: 'center',
       },
       () => {
-        this.scene.start('SceneMain');
+        this.scene.start('SceneMain', { user: egos[0] });
       },
     );
+
+    this.playButton.setOrigin(0.5);
+    this.add.existing(this.playButton);
+
+    this.playButton2 = new MenuButton(
+      this,
+      this.game.config.width * 0.75,
+      this.game.config.height * 0.4,
+      `${egos[1].toUpperCase()}`, {
+        fontFamily: 'monospace',
+        fontSize: playBtnSize,
+        fontStyle: 'bold',
+        color: 'white',
+        align: 'center',
+      },
+      () => {
+        this.scene.start('SceneMain', { user: egos[1] });
+      },
+    );
+
+    this.playButton2.setOrigin(0.5);
+    this.add.existing(this.playButton2);
+
+    this.playButton3 = new MenuButton(
+      this,
+      this.game.config.width * 0.25,
+      this.game.config.height * 0.5,
+      `${egos[2].toUpperCase()}`, {
+        fontFamily: 'monospace',
+        fontSize: playBtnSize,
+        fontStyle: 'bold',
+        color: 'white',
+        align: 'center',
+      },
+      () => {
+        this.scene.start('SceneMain', { user: egos[2] });
+      },
+    );
+
+    this.playButton3.setOrigin(0.5);
+    this.add.existing(this.playButton3);
+
+    this.playButton4 = new MenuButton(
+      this,
+      this.game.config.width * 0.75,
+      this.game.config.height * 0.5,
+      `${egos[3].toUpperCase()}`, {
+        fontFamily: 'monospace',
+        fontSize: playBtnSize,
+        fontStyle: 'bold',
+        color: 'white',
+        align: 'center',
+      },
+      () => {
+        this.scene.start('SceneMain', { user: egos[3] });
+      },
+    );
+
+    this.playButton4.setOrigin(0.5);
+    this.add.existing(this.playButton4);
 
     this.lBButton = new MenuButton(
       this,
@@ -68,9 +149,7 @@ export default class SceneMainMenu extends Phaser.Scene {
       },
     );
 
-    this.add.existing(this.playButton);
     this.add.existing(this.lBButton);
-    this.playButton.setOrigin(0.5);
     this.lBButton.setOrigin(0.5);
     this.title.setOrigin(0.5);
 
@@ -87,5 +166,9 @@ export default class SceneMainMenu extends Phaser.Scene {
     for (let i = 0; i < this.backgrounds.length; i += 1) {
       this.backgrounds[i].update();
     }
+  }
+
+  randomNumber() {
+    return Math.floor(Math.random() * 100) + 500;
   }
 }

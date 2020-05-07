@@ -116,7 +116,7 @@ export default class SceneLeaderBoard extends Phaser.Scene {
     }
   }
 
-  static dynamicsort(property, order) {
+  dynamicsort(property, order) {
     // use either asc or desc
     let sortOrder = 1;
     if (order === 'desc') {

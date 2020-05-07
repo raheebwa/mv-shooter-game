@@ -29,12 +29,15 @@ export default class Player extends Entity {
     this.body.velocity.x = this.getData('speed');
   }
 
-  onDestroy(finalScore) {
+  onDestroy(finalScore, user) {
     this.scene.time.addEvent({
       // go to game over scene
       delay: 1000,
       callback() {
-        this.scene.scene.start('SceneGameOver', { score: finalScore });
+        this.scene.scene.start('SceneGameOver', {
+          score: finalScore,
+          user,
+        });
       },
       callbackScope: this,
       loop: false,

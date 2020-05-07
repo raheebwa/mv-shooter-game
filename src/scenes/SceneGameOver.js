@@ -1,16 +1,26 @@
 /* eslint-disable no-undef */
+/* eslint-disable class-methods-use-this */
 import ScrollingBackground from '../entities/ScrollingBackground';
 import MenuButton from '../game_objects/menuButton';
+import ApiConsumer from '../api-client/apiConsumer';
 
 export default class SceneGameOver extends Phaser.Scene {
-  constructor(score = 0) {
+  constructor(score = 0, user) {
     super({ key: 'SceneGameOver' });
     this.score = score;
+    this.user = user;
   }
 
   init(data) {
     // !!! print {}
     this.score = data.score;
+    this.user = data.user;
+
+    (async () => {
+      if (this.score) {
+        await ApiConsumer.postGameScore(this.user, this.score);
+      }
+    })();
   }
 
   create() {
@@ -30,11 +40,11 @@ export default class SceneGameOver extends Phaser.Scene {
     this.subTitle = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.2,
-      `Final Score: ${this.score}`, {
+      `${this.user}, Final Score: ${this.score}`, {
         fontFamily: 'monospace',
-        fontSize: 28,
+        fontSize: 23,
         fontStyle: 'bold',
-        color: 'purple',
+        color: 'pink',
         align: 'center',
       },
     );
@@ -68,7 +78,7 @@ export default class SceneGameOver extends Phaser.Scene {
         align: 'center',
       },
       () => {
-        this.scene.start('SceneMain');
+        this.scene.start('SceneMain', { user: this.user });
       },
     );
     this.add.existing(this.lBButton);
