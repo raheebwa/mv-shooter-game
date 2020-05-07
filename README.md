@@ -5,14 +5,20 @@ A Space shooter game running on Phaser 3, that implements ands coring system wit
 ## Game Play
 
 - Start game by selecting an alter ego.
+
   ![screenshot](./images/MainMenu.gif)
+
 - You need to survive a wave of enemy ships by using arrow keys for direction.
 - You can destroy enemy ships by shooting lasers using the `Spacebar`.
+
   ![screenshot](./images/Main.gif)
+
 - If you colide with the enemy ship or you are hit by any of their lasers, it game over.
 - Every enemy ship you hit scores you 10 points.
 - Watch out for the enmy ships that follow you! PLay and see how high you performed agians others' alter egos on the leaderboard
+
   ![screenshot](./images/LeaderBoard.gif)
+
 - The leaderboard shows a maximum of 10 of the latest scores sorted from the highest.
 
 ## Built With
