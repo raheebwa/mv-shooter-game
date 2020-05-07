@@ -2,8 +2,10 @@
 
 A Space shooter game running on Phaser 3, that implements ands coring system with leaderboards
 
-## Game Play
+## Game Play & Objectives
 
+- The Objective of the game is to survive a wave of enemy ships as long as you can, the longer, the higher the score.
+- Deal wth two kinds of enemy ships, the carrier ships that move down shooting lasers and the homing dougnout misiles that follow you around till collision
 - Start game by selecting an alter ego.
 
   ![screenshot](./images/MainMenu.gif)
