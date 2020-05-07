@@ -51,8 +51,27 @@ export default class SceneMainMenu extends Phaser.Scene {
         this.scene.start('SceneMain');
       },
     );
+
+    this.lBButton = new MenuButton(
+      this,
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.7,
+      'LEADERBOARD', {
+        fontFamily: 'monospace',
+        fontSize: 35,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center',
+      },
+      () => {
+        this.scene.start('SceneLeaderBoard');
+      },
+    );
+
     this.add.existing(this.playButton);
+    this.add.existing(this.lBButton);
     this.playButton.setOrigin(0.5);
+    this.lBButton.setOrigin(0.5);
     this.title.setOrigin(0.5);
 
     this.backgrounds = [];
