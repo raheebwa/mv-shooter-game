@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import ScrollingBackground from '../entities/ScrollingBackground';
-import MenuButton from '../game_objects/menu-button';
+import MenuButton from '../game_objects/menuButton';
+// import ApiConsumer from '../api-client/apiConsumer';
 
 export default class SceneLeaderBoard extends Phaser.Scene {
   constructor() {
