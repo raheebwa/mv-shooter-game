@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import 'babel-polyfill';
 
 const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
@@ -43,8 +44,8 @@ const ApiConsumer = {
 
       const res = JSON.parse(qaz);
       const realID = res.result.match(new RegExp('ID: ' + '(.*)' + ' added'));
-      result = realID[1];
-      localStorage.setItem('game_id', result);
+      const [cleanID] = realID[1];
+      localStorage.setItem('game_id', cleanID);
     }
     return result;
   },
@@ -70,8 +71,8 @@ const ApiConsumer = {
   },
 };
 
-// (async () => {
-//   console.log(await ApiConsumer.postGameScore('zedit', 2300));
+// (async() => {
+//     console.log(await ApiConsumer.postGameScore("Brenda", 6300));
 // })();
 
 export default ApiConsumer;

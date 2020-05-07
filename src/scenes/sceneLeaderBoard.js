@@ -30,7 +30,7 @@ export default class SceneLeaderBoard extends Phaser.Scene {
         allScores = allScores.slice(Math.max(allScores.length - 9, 1));
       }
       let count = 0;
-      allScores.forEach((el) => {
+      allScores.sort(this.dynamicsort('score', 'desc')).forEach((el) => {
         this.playerName = this.add.text(
           this.game.config.width * 0.2,
           this.game.config.height * (0.25 + count),
@@ -114,7 +114,25 @@ export default class SceneLeaderBoard extends Phaser.Scene {
     for (let i = 0; i < this.backgrounds.length; i += 1) {
       this.backgrounds[i].update();
     }
+  }
 
-    // console.log(ApiConsumer.postGameScore());
+  static dynamicsort(property, order) {
+    // use either asc or desc
+    let sortOrder = 1;
+    if (order === 'desc') {
+      sortOrder = -1;
+    }
+    return (a, b) => {
+      // a should come before b in the sorted order
+      if (a[property] < b[property]) {
+        return -1 * sortOrder;
+        // a should come after b in the sorted order
+      }
+      if (a[property] > b[property]) {
+        return 1 * sortOrder;
+        // a and b are the same
+      }
+      return 0 * sortOrder;
+    };
   }
 }
