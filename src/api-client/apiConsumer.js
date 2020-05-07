@@ -15,12 +15,8 @@ const postData = async(url = "", data = {}) => {
         referrerPolicy: "no-referrer",
         body: JSON.stringify(data),
     });
-    return JSON.stringify(await response.json()); // parses JSON response into native JavaScript objects
+    return JSON.stringify(await response.json());
 };
-
-// postData(`${baseUrl}games/`, { name: "Ramar's Shooter Game" }).then((res) => {
-//     console.log(res);
-// });
 
 const ApiConsumer = {
     async getGameID() {
@@ -39,18 +35,18 @@ const ApiConsumer = {
         }
         return result;
     },
-    // async postGameScore() {
-    //     const currScore = {
-    //         user: "John Doe",
-    //         score: 42,
-    //     };
-    //     const response = await fetch(`${baseUrl}/games/${this.getGameID}/scores/`, {
-    //         mode: "cors",
-    //         method: POST,
-    //         body: json.stringify(currScore),
-    //     });
-    //     return response.json();
-    // },
+    async postGameScore() {
+        const currScore = {
+            user: "John Doe",
+            score: Math.floor(Math.random() * 100) + 10,
+        };
+        const response = await postData(
+            `${baseUrl}games/${await this.getGameID()}/scores/`,
+            currScore
+        );
+
+        return response;
+    },
     // async getScores() {
     //     //   const response = await fetch(`${baseUrl}/games/${this.getGameID}/scores/`, {
     //     //   mode: 'cors',
@@ -76,7 +72,7 @@ const ApiConsumer = {
 };
 
 (async() => {
-    console.log(await ApiConsumer.getGameID());
+    console.log(await ApiConsumer.postGameScore());
 })();
 
 export default ApiConsumer;

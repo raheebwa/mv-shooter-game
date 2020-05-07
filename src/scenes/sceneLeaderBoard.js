@@ -55,6 +55,6 @@ export default class SceneLeaderBoard extends Phaser.Scene {
             this.backgrounds[i].update();
         }
 
-        console.log(ApiConsumer.getGameID());
+        console.log(ApiConsumer.postGameScore());
     }
 }
