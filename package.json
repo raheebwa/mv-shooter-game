@@ -9,7 +9,8 @@
     "scripts": {
         "server": "webpack-dev-server",
         "lint": "eslint src/*",
-        "lint:fix": "eslint src/* --fix"
+        "lint:fix": "eslint src/* --fix",
+        "test": "jest --passWithNoTests"
     },
     "devDependencies": {
         "babel-core": "6",
@@ -24,6 +25,7 @@
         "eslint-plugin-react": "^7.19.0",
         "eslint-plugin-react-hooks": "2.5.0",
         "install-peerdeps": "^2.0.2",
+        "jest": "^26.0.1",
         "prettier": "^2.0.5",
         "stylelint": "^13.3.3",
         "stylelint-config-standard": "^20.0.0",
