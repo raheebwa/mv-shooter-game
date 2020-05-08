@@ -26,6 +26,7 @@ A Space shooter game running on Phaser 3, that implements ands coring system wit
 ## Built With
 
 - Javscript, HTML/CSS,
+- Bootstrap 4,
 - Phaser 3,
 - webpack
 
