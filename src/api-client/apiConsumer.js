@@ -33,12 +33,12 @@ const getData = async (url = '') => {
 };
 
 const ApiConsumer = {
-  async getGameID() {
+  async getGameID(url = baseUrl) {
     let result;
     if (localStorage.getItem('game_id') !== null) {
       result = localStorage.getItem('game_id');
     } else {
-      const qaz = await postData(`${baseUrl}games/`, {
+      const qaz = await postData(`${url}games/`, {
         name: "Ramar's Shooter Game",
       });
 
@@ -49,21 +49,21 @@ const ApiConsumer = {
     }
     return result;
   },
-  async postGameScore(user, score) {
+  async postGameScore(user, score, url = baseUrl) {
     const currScore = {
       user,
       score,
     };
     const response = await postData(
-      `${baseUrl}games/${await this.getGameID()}/scores/`,
+      `${url}games/${await this.getGameID()}/scores/`,
       currScore,
     );
 
     return response;
   },
-  async getScores() {
+  async getScores(url = baseUrl) {
     const response = await getData(
-      `${baseUrl}games/${await this.getGameID()}/scores/`,
+      `${url}games/${await this.getGameID()}/scores/`,
     );
     const allScores = await response;
 
@@ -75,4 +75,4 @@ const ApiConsumer = {
 //     console.log(await ApiConsumer.postGameScore("Brenda", 6300));
 // })();
 
-export default ApiConsumer;
+export { ApiConsumer, getData, postData };

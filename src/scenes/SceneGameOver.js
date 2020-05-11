@@ -2,7 +2,7 @@
 /* eslint-disable class-methods-use-this */
 import ScrollingBackground from '../entities/ScrollingBackground';
 import MenuButton from '../game_objects/menuButton';
-import ApiConsumer from '../api-client/apiConsumer';
+import { ApiConsumer } from '../api-client/apiConsumer';
 
 export default class SceneGameOver extends Phaser.Scene {
   constructor(score = 0, user) {
