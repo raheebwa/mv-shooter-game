@@ -71,8 +71,4 @@ const ApiConsumer = {
   },
 };
 
-// (async() => {
-//     console.log(await ApiConsumer.postGameScore("Brenda", 6300));
-// })();
-
 export { ApiConsumer, getData, postData };
