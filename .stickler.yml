@@ -1,0 +1,8 @@
+linters:
+  eslint:
+    config: "./.eslintrc.json"
+
+# add the files here you want to be ignored by stylelint
+files:
+  ignore:
+    - "dist/*"
