@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import ScrollingBackground from '../entities/ScrollingBackground';
 import MenuButton from '../game_objects/menuButton';
+import { randomNumber } from '../utilities/generalUtils';
 
 export default class SceneMainMenu extends Phaser.Scene {
   constructor() {
@@ -50,10 +51,10 @@ export default class SceneMainMenu extends Phaser.Scene {
     this.helpText.setOrigin('0.5');
 
     const egos = [
-      `Superman-${this.randomNumber()}`,
-      `Batgirl-${this.randomNumber()}`,
-      `Supergirl-${this.randomNumber()}`,
-      `Batman-${this.randomNumber()}`,
+      `Superman-${randomNumber()}`,
+      `Batgirl-${randomNumber()}`,
+      `Supergirl-${randomNumber()}`,
+      `Batman-${randomNumber()}`,
     ];
     const playBtnSize = 25;
 
@@ -166,9 +167,5 @@ export default class SceneMainMenu extends Phaser.Scene {
     for (let i = 0; i < this.backgrounds.length; i += 1) {
       this.backgrounds[i].update();
     }
-  }
-
-  randomNumber() {
-    return Math.floor(Math.random() * 100) + 500;
   }
 }
