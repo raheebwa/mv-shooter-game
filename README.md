@@ -32,7 +32,7 @@ A Space shooter game running on Phaser 3, that implements ands coring system wit
 
 ## Live Demo
 
-[Live Demo Link](https://raheebwa.github.io/mv-shooter-game)
+[Live Demo Link](https://ramar-shooter.netlify.app/)
 
 ## Getting Started
 
